@@ -1,24 +1,19 @@
-# 🛠️ Independent Pilot Integration Manual
+# 🚀 BMS Server Core - Pilot Setup Guide
 
-This guide enables third-party engineers to integrate the **CZ Bare-Metal Engine** into their active production codebase (Robotics, IoT Telemetry, Control Loops) to measure zero-crash memory stability and sub-microsecond latency.
+Welcome to the Pilot SDK for the BMS (Behavior Management System) Engine. This guide will help you run the zero-heap telemetry stream on your ESP32 in under 5 minutes. 
+
+Our core focus is strictly **0 Bytes dynamic memory allocation** during runtime to ensure 100% stable execution for high-frequency systems.
 
 ---
 
-## 3-Step Production Integration
+## 🛠️ Prerequisites
+* **Hardware:** ESP32 Development Board (Any standard variant).
+* **Software:** Arduino IDE or VS Code with PlatformIO.
 
-### Step 1: Copy `BMS_Engine.h` to your project
-Include the lightweight, single-header library:
-```cpp
-#include "BMS_Engine.h"
+---
 
-Step 2: Instantiate Engine Object
-​Declare the core engine on the static stack (Zero Heap Allocation):
-BMS_CrossZero_Engine cz_core(0, 5); // Start state = 0, Resolution steps = 5
-
-Step 3: Call inside high-frequency execution loop
-​Replace unconstrained floating-point calculations with bounded BMS state transitions:
-
-void loop() {
-    cz_core.process_cz_cycle(); // Executes in 0.31 µs (O(1) Constant Time)
-    int current_bounded_state = cz_core.getCurrentState();
-}
+## ⚙️ Step 1: Installation & Setup
+1. **Clone the Repository:**
+   Open your terminal and run:
+   ```bash
+   git clone [https://github.com//BMS-Server-Core.git](https://github.com/CZ-Engine-Prashun/BMS-Server-Core.git)
